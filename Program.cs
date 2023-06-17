@@ -1,0 +1,3 @@
+﻿using NewGame;
+
+new Game();
