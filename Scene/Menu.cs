@@ -5,9 +5,9 @@ public class Menu : Interface.IScene
     public string MenuText { get; set; }
 
     private readonly MenuOption[] _menuOption = null!; 
-    protected string[] _choices = null!;
-    protected char[] _choiceChars = null!;
-    protected State _state;
+    protected string[] Choices = null!;
+    protected char[] ChoiceChars = null!;
+    protected State State;
 
     public delegate void MenuOption();
 
@@ -15,9 +15,9 @@ public class Menu : Interface.IScene
     {
         MenuText = menuText;
         _menuOption = options;
-        _choices = choices;
-        _choiceChars = choiceChars;
-        _state = state;
+        Choices = choices;
+        ChoiceChars = choiceChars;
+        State = state;
     }
 
 
@@ -27,12 +27,10 @@ public class Menu : Interface.IScene
     {
         Console.Clear();
         Console.WriteLine(MenuText);
-        if (_choices.Length != 0)
+        if (Choices.Length == 0) return;
+        for (var i = 0; i < Choices.Length; i++)
         {
-            for (var i = 0; i < _choices.Length; i++)
-            {
-                Console.WriteLine($"{_choiceChars[i]}. {_choices[i]}");
-            }
+            Console.WriteLine($"{ChoiceChars[i]}. {Choices[i]}");
         }
     }
 
@@ -41,9 +39,9 @@ public class Menu : Interface.IScene
         while (true)
         {
             var input = Console.ReadKey();
-            for (int i = 0; i < _choiceChars.Length; i++)
+            for (int i = 0; i < ChoiceChars.Length; i++)
             {
-                if (input.KeyChar == _choiceChars[i])
+                if (input.KeyChar == ChoiceChars[i])
                 {
                     _menuOption[i]();
                     return;
@@ -57,15 +55,7 @@ public class Menu : Interface.IScene
 
     public State UpdateState()
     {
-        return _state;
-    }
-
-    public static void AnyButtonToContinue()
-    {
-        Console.WriteLine();
-        Console.WriteLine("Press any button to continue..");
-        Console.ReadKey();
-        Console.Clear();
+        return State;
     }
 
     public static int GetNumFromUser(int maxChoice)

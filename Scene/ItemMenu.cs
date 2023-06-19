@@ -20,7 +20,7 @@ namespace NewGame.Scene
                 var choice = Console.ReadKey();
                 for (var i = 0; i < _actions.Length; i++)
                 {
-                    if (choice.KeyChar != _choiceChars[i]) continue;
+                    if (choice.KeyChar != ChoiceChars[i]) continue;
                     _actions[i](i-1);
                     return;
 

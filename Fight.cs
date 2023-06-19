@@ -34,7 +34,7 @@ public class Fight
     {
         Console.Clear();
         Console.WriteLine("You flee the scene.");
-        Menu.AnyButtonToContinue();
+        AnyButton();
         _ongoing = false;
     }
 
@@ -74,7 +74,7 @@ public class Fight
         Console.Clear();
         Console.WriteLine($"You defeated the {opponent.Name.ToLower()}\n" +
                           $"Gained {xp} Exp");
-        Menu.AnyButtonToContinue();
+        AnyButton();
 
         if (you.Xp >= you.MaxXp) you.LevelUp();
     }
@@ -105,7 +105,7 @@ public class Fight
         ShowFightState(you, opponent);
         Console.WriteLine($"You dealt {playerDamage} to the {opponent.Name.ToLower()}.\n" +
                           $"While the {opponent.Name.ToLower()} dealt {enemyDamage} to you.");
-        Menu.AnyButtonToContinue();
+        AnyButton();
     }
 
     private int EnemyDamage(Character you, Enemy opponent)
@@ -179,6 +179,14 @@ public class Fight
         }
 
         return effectiveness;
+    }
+
+    public static void AnyButton()
+    {
+        Console.WriteLine();
+        Console.WriteLine("Press any button to continue..");
+        Console.ReadKey();
+        Console.Clear();
     }
 
 }

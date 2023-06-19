@@ -9,7 +9,11 @@ public class Encounters
     public Enemy? Enemy { get; private set; }
     public Item? Item { get; private set; }
     public Weapon? Weapon { get; private set; }
-    
+
+    public Encounters()
+    {
+        
+    }
     public Encounters(string name, string encounter, Enemy? enemy, Item item, Weapon? weapon)
     {
         Name = name;
